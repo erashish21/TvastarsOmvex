@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>@ViewData["Title"] - Tvastars Omvex</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+ <header>
+ <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+    <div class="container">
+      <!-- Brand -->
+      <a class="navbar-brand d-flex align-items-center fw-bold fs-5 text-uppercase" href="/" style="color:#A23737;">
+        <img src="/images/logo.jpeg" alt="Tvastars" height="40" class="me-2 " />
+        Tvastars Omvex
+      </a>
+
+      <!-- Mobile Toggle -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+              aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navigation Links -->
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item px-2">
+            <a class="nav-link fw-semibold @(ViewContext.RouteData.Values["controller"]?.ToString() == "Home" ? "active-link" : "")" href="/">
+              <i class="fa fa-home me-1"></i> Home
+            </a>
+          </li>
+          <li class="nav-item px-2">
+            <a class="nav-link fw-semibold @(ViewContext.RouteData.Values["controller"]?.ToString() == "Products" ? "active-link" : "")" href="/Products">
+              <i class="fa fa-box me-1"></i> Products
+            </a>
+          </li>
+          <li class="nav-item px-2">
+            <a class="nav-link fw-semibold @(ViewContext.RouteData.Values["controller"]?.ToString() == "Service" ? "active-link" : "")" href="/Service">
+              <i class="fa fa-cogs me-1"></i> Services
+            </a>
+          </li>
+          <li class="nav-item px-2">
+            <a class="nav-link fw-semibold @(ViewContext.RouteData.Values["controller"]?.ToString() == "Projects" ? "active-link" : "")" href="/Projects">
+              <i class="fa fa-diagram-project me-1"></i> Projects
+            </a>
+          </li>
+          <li class="nav-item px-2">
+            <a class="nav-link fw-semibold @(ViewContext.RouteData.Values["controller"]?.ToString() == "About" ? "active-link" : "")" href="/About">
+              <i class="fa fa-info-circle me-1"></i> About
+            </a>
+          </li>
+          <li class="nav-item px-2">
+            <a class="nav-link fw-semibold @(ViewContext.RouteData.Values["controller"]?.ToString() == "Contact" ? "active-link" : "")" href="/Contact/Create">
+              <i class="fa fa-envelope me-1"></i> Contact
+            </a>
+          </li>
+
+          <!-- Admin Button -->
+          <li class="nav-item ms-lg-3">
+            <a href="/Admin/AdminDashboard" class="btn btn-outline-danger fw-semibold px-3">
+              <i class="fa fa-user-shield me-1"></i> Admin
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+  <main class="flex-shrink-0">
+    @RenderBody()
+  </main>
+
+  <footer class="bg-dark text-light py-5 mt-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h5>Tvastars Omvex</h5>
+          <p>Automation solutions & components manufactured with quality.</p>
+        </div>
+        <div class="col-md-4">
+          <h5>Quick Links</h5>
+          <ul class="list-unstyled">
+              <li><a class="text-light" href="/About/Index">About</a></li>
+            <li><a class="text-light" href="/Products">Products</a></li>
+            <li><a class="text-light" href="/Service/Index">Services</a></li>
+            <li><a class="text-light" href="/Contact/Create">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h5>Contact</h5>
+          <p>Phone: +62 812 345 678 90</p>
+          <p>Email: info@tvastars.com</p>
+        </div>
+      </div>
+      <div class="text-center mt-4 small">
+        © @DateTime.Now.Year Tvastars Omvex. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="~/js/site.js"></script>
+  @RenderSection("Scripts", required: false)
+</body>
+</html>

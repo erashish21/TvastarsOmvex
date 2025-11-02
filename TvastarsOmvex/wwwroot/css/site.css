@@ -1,0 +1,114 @@
+:root {
+    --brand-orange: #ff7a3d;
+    --brand-blue: #2f6f8f;
+    --muted: #6c757d;
+}
+
+body {
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    line-height: 1.5;
+    padding-top: 75px;
+}
+
+.header-brand {
+    font-weight: 700;
+    color: var(--brand-blue);
+}
+
+.hero {
+    background: url('/images/hero-bg.jpg') center/cover no-repeat;
+    padding: 80px 0;
+    color: #fff;
+}
+
+    .hero .hero-card {
+        background: rgba(255,255,255,0.95);
+        color: #111;
+        padding: 22px;
+        border-radius: 8px;
+    }
+
+.cta-orange {
+    background: var(--brand-orange);
+    color: #fff;
+    padding: 18px;
+    border-radius: 8px;
+}
+
+.services-section {
+    background: #f5f8fa;
+    padding: 48px 0;
+}
+
+.service-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+}
+
+.projects-grid img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.testimonial {
+    background: #eef6f9;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.logo-grid img {
+    opacity: 0.6;
+    max-height: 48px;
+    margin: 10px;
+}
+
+.contact-box {
+    background: var(--brand-orange);
+    color: white;
+    padding: 22px;
+    border-radius: 8px;
+}
+
+.footer {
+    background: #123;
+    color: #fff;
+}
+/* Header Styling */
+.navbar .nav-link {
+    color: #333;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+    .navbar .nav-link:hover {
+        color: #A23737;
+        transform: translateY(-2px);
+    }
+
+.navbar .active-link {
+    color: #A23737 !important;
+    border-bottom: 2px solid #A23737;
+}
+
+.navbar-brand img {
+    transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover img {
+    transform: rotate(-5deg);
+}
+/* Contact Page Styling */
+.card input, .card textarea {
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    transition: all 0.3s ease;
+}
+
+    .card input:focus, .card textarea:focus {
+        border-color: #A23737;
+        box-shadow: 0 0 4px rgba(162, 55, 55, 0.3);
+    }

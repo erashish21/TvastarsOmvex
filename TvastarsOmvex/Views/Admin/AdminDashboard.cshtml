@@ -1,0 +1,83 @@
+﻿@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4 text-center text-primary bg-light py-3 rounded">
+        <i class="fa fa-user-shield"></i> Admin Dashboard
+    </h2>
+
+    <div class="row text-center mb-5">
+        <!-- 🟦 Products -->
+        <div class="col-md-3 mb-3">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <i class="fa fa-box fa-3x text-primary mb-2"></i>
+                    <h4>@ViewBag.TotalProducts</h4>
+                    <p class="text-muted">Products</p>
+                    <a href="/Admin/Index" class="btn btn-outline-primary btn-sm">
+                        <i class="fa fa-box"></i> Manage Products
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 🟩 Categories -->
+        <div class="col-md-3 mb-3">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <i class="fa fa-layer-group fa-3x text-success mb-2"></i>
+                    <h4>@ViewBag.TotalCategories</h4>
+                    <p class="text-muted">Categories</p>
+                    <a href="/Category" class="btn btn-outline-success btn-sm">
+                        <i class="fa fa-tags"></i> Manage Categories
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 🟥 Enquiries -->
+        <div class="col-md-3 mb-3">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <i class="fa fa-envelope fa-3x text-danger mb-2"></i>
+                    <h4>@ViewBag.TotalEnquiries</h4>
+                    <p class="text-muted">Enquiries</p>
+                    <a href="/Contact/Index" class="btn btn-outline-danger btn-sm">
+                        <i class="fa fa-envelope"></i> View Enquiries
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 🟨 Projects -->
+        <div class="col-md-3 mb-3">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <i class="fa fa-project-diagram fa-3x text-warning mb-2"></i>
+                    <h4>@ViewBag.TotalProjects</h4>
+                    <p class="text-muted">Projects</p>
+                    <a href="/Projects/Manage" class="btn btn-outline-warning btn-sm">
+                        <i class="fa fa-folder-open"></i> Manage Projects
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="/Admin/ManageServices" class="btn btn-primary me-2">
+        <i class="fa fa-cogs"></i> Manage Services
+    </a>
+        <a href="/Category/Create" class="btn btn-success me-2">
+            <i class="fa fa-plus-circle"></i> Add New Category
+        </a>
+        <a href="/Admin/Index" class="btn btn-dark">
+            <i class="fa fa-chart-line"></i> Manage All Products
+        </a>
+        <a href="/Projects/Manage" class="btn btn-outline-warning btn-sm">
+    <i class="fa fa-folder-open"></i> Manage Projects
+</a>
+
+    </div>
+</div>

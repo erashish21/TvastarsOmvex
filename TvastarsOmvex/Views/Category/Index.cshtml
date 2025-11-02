@@ -1,0 +1,54 @@
+﻿@model IEnumerable<TvastarsOmvex.Models.Category>
+@{
+    ViewData["Title"] = "Manage Categories";
+}
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Manage Categories</h2>
+        <a asp-action="Create" class="btn btn-success"><i class="fa fa-plus"></i> Add Category</a>
+    </div>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">@TempData["Success"]</div>
+    }
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-warning text-center">No categories found.</div>
+    }
+    else
+    {
+        <table class="table table-bordered table-striped align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th style="width:150px;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var c in Model)
+                {
+                    <tr>
+                        <td>@c.Id</td>
+                        <td>@c.Name</td>
+                        <td>@c.Description</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@c.Id" class="btn btn-primary btn-sm">
+                                <i class="fa fa-edit"></i> Edit
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@c.Id"
+                               class="btn btn-danger btn-sm ms-2"
+                               onclick="return confirm('Are you sure you want to delete this category?');">
+                                <i class="fa fa-trash"></i> Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

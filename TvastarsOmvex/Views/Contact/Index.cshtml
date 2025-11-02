@@ -1,0 +1,43 @@
+﻿@model IEnumerable<TvastarsOmvex.Models.Enquiry>
+@{
+    ViewData["Title"] = "Enquiries";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4 text-center text-primary">
+        <i class="fa fa-envelope"></i> Customer Enquiries
+    </h2>
+
+    @if (Model == null || !Model.Any())
+    {
+        <div class="alert alert-warning text-center">
+            No enquiries found.
+        </div>
+    }
+    else
+    {
+        <table class="table table-bordered table-hover shadow-sm">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Message</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var enquiry in Model)
+                {
+                    <tr>
+                        <td>@enquiry.Name</td>
+                        <td>@enquiry.Email</td>
+                        <td>@enquiry.Phone</td>
+                        <td>@enquiry.Message</td>
+                        <td>@enquiry.CreatedAt.ToString("dd MMM yyyy")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

@@ -1,0 +1,38 @@
+﻿@model TvastarsOmvex.Models.Project
+@{
+    ViewData["Title"] = "Add Project";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4">Add New Project</h2>
+
+    <form asp-action="Create" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label asp-for="Title" class="form-label"></label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ShortDescription" class="form-label"></label>
+            <input asp-for="ShortDescription" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="LongDescription" class="form-label"></label>
+            <textarea asp-for="LongDescription" rows="4" class="form-control"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Project Image</label>
+            <input type="file" name="imageFile" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-success">Save Project</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

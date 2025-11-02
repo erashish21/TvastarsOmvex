@@ -1,0 +1,51 @@
+﻿@model TvastarsOmvex.Models.Product
+@{
+    ViewData["Title"] = "Edit Product";
+    var categories = ViewBag.Categories as List<TvastarsOmvex.Models.Category>;
+}
+
+<div class="container mt-5">
+    <h2>Edit Product</h2>
+    <form asp-action="Edit" method="post" enctype="multipart/form-data">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input asp-for="Name" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Category</label>
+            <select asp-for="CategoryId" class="form-select">
+                @foreach (var c in categories)
+                {
+                    <option value="@c.Id" selected="@(Model.CategoryId == c.Id)">
+                        @c.Name
+                    </option>
+                }
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Short Description</label>
+            <input asp-for="ShortDescription" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Long Description</label>
+            <textarea asp-for="LongDescription" class="form-control" rows="4"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Upload New Image (optional)</label>
+            <input type="file" name="imageFile" class="form-control" />
+            @if (!string.IsNullOrEmpty(Model.ImagePath))
+            {
+                <img src="@Model.ImagePath" width="120" class="mt-2 rounded shadow-sm" />
+            }
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a asp-action="Index" class="btn btn-secondary ms-2">Cancel</a>
+    </form>
+</div>

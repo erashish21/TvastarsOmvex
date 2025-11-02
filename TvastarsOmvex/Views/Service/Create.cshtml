@@ -1,0 +1,39 @@
+﻿@model TvastarsOmvex.Models.Product
+@{
+    ViewData["Title"] = "Add Service";
+    var categories = ViewBag.Categories as List<TvastarsOmvex.Models.Category>;
+}
+
+<div class="container mt-4">
+    <h2>Add Service</h2>
+    <form asp-action="Create" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="CategoryId" class="form-label">Category</label>
+            <select asp-for="CategoryId" class="form-select" asp-items="@(new SelectList(categories, "Id", "Name"))"></select>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ShortDescription" class="form-label"></label>
+            <input asp-for="ShortDescription" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="LongDescription" class="form-label"></label>
+            <textarea asp-for="LongDescription" class="form-control" rows="4"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Image</label>
+            <input type="file" name="imageFile" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-success">Save</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
