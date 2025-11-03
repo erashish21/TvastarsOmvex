@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
 using TvastarsOmvex.Data;
@@ -86,5 +87,26 @@ namespace TvastarsOmvexMVC.Data
 
 
         }
+
+        public static async Task SeedAdminUser(IServiceProvider serviceProvider)
+        {
+            var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
+            var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+            var adminEmail = "admin@tvastars.com";
+            var adminPassword = "Admin@123";
+
+            if (!await roleManager.RoleExistsAsync("Admin"))
+                await roleManager.CreateAsync(new IdentityRole("Admin"));
+
+            var user = await userManager.FindByEmailAsync(adminEmail);
+            if (user == null)
+            {
+                user = new IdentityUser { UserName = adminEmail, Email = adminEmail, EmailConfirmed = true };
+                await userManager.CreateAsync(user, adminPassword);
+                await userManager.AddToRoleAsync(user, "Admin");
+            }
+        }
+
     }
 }

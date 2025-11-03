@@ -1,44 +1,55 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using TvastarsOmvex.Data;
 using TvastarsOmvexMVC.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ✅ Configure Database Connection
+// ✅ Database Connection
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// ✅ Add MVC Controllers and Views
+// ✅ Add Identity Authentication
+builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+{
+    options.SignIn.RequireConfirmedAccount = false;
+})
+.AddRoles<IdentityRole>()
+.AddEntityFrameworkStores<ApplicationDbContext>();
+
+// ✅ Add MVC Controllers and Razor Pages
 builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
-// ✅ Configure Middleware
+// ✅ Middleware
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
 }
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    await SeedData.SeedAdminUser(services);
+}
+
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
 
-// ❌ Removed Identity Authentication & Authorization middleware
-// app.UseAuthentication();
-// app.UseAuthorization();
+// ✅ Enable Authentication and Authorization
+app.UseAuthentication();
+app.UseAuthorization();
 
-// ✅ Run seeding logic (no await needed)
-using (var scope = app.Services.CreateScope())
-{
-    SeedData.Initialize(scope.ServiceProvider);
-}
-
-// ✅ Define Default Route
+// ✅ Routes
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-// ✅ Run Application
+app.MapRazorPages(); // 👈 for /Identity pages
+
 app.Run();

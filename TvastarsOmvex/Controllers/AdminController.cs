@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TvastarsOmvex.Data;
 using TvastarsOmvex.Models;
 
 namespace TvastarsOmvex.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         private readonly ApplicationDbContext _context;
